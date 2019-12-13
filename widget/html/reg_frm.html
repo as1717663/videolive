@@ -379,14 +379,16 @@
         var tempCode = null;
         // param中的key命名不能改变
         var param = {zone: country, phoneNumber: phone};
-        alert(moduleSMSSDK);
+        //alert(moduleSMSSDK);
         moduleSMSSDK.getTextCode(param, function (ret, err) {
             if (err !== null && err !== undefined && err !== '') {
                 // 错误消息示例：{"msg":"Template not exist.","code":484}
-                alert(eTitle + JSON.stringify(err));
+                //alert(eTitle + JSON.stringify(err));
+                app.toast({msg:'发送出错'})
             } else {
                 // 正常消息示例：{"smart":false}
-                alert(sTitle + JSON.stringify(ret));
+                //alert(sTitle + JSON.stringify(ret));
+                app.toast({msg:'发送成功'})
             }
         });
     }
