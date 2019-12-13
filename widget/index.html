@@ -36,7 +36,7 @@
     </style>
     <script type="text/javascript">
 
-      localStorage.setItem('api_url',"http://www.zbhz520.xyz");
+      localStorage.setItem('api_url',"http://103.107.188.201:81");
     </script>
 </head>
 <body>
@@ -120,7 +120,7 @@
 
 <script type="text/x-dot-template" id="hongbaotpl">
 
-<img src="http://www.zbhz520.xyz/{{=it.picurl}}" style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}
+<img src="http://103.107.188.201:81/{{=it.picurl}}" style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}
 </script>
 
 <script type="text/javascript" src="script/api.js"></script>
@@ -305,7 +305,7 @@
 
 
                         api.ajax({
-                            url: 'http://www.zbhz520.xyz/AppHello.html',
+                            url: 'http://103.107.188.201:81/AppHello.html',
                             method: 'get'
                         },function(ret, err){
                             if (ret) {

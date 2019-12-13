@@ -57,7 +57,7 @@
     	                                    </div>
     	                                    <div class="aui-flex-box">
     																				<p>
-    																						<em class="aui-group-three" style=" font-size: 12px; "> 红楼梦TV抢板</em>
+    																						<em class="aui-group-three" style=" font-size: 12px; "> OldCar抢板</em>
     																				</p>
     	                                        <h3 style=" font-size: 10px; ">在新更新</h3>
     	                                        <p>
@@ -179,7 +179,7 @@ GetVlist();    //获取电影列表
 
       */
       api.toast({
-msg: '(红楼梦TV提醒您！    你还没登陆！)',
+msg: '(OldCar提醒您！    你还没登陆！)',
 duration: 2000
 });
 
@@ -404,8 +404,8 @@ function GetVlist() {
     var div_list = $api.byId('div_list');
     var template = $api.byId('template');
     api.ajax({
-      //全部列表  url: 'http://www.zbhz520.xyz/login/login/mnlist.html',
-        url: 'http://www.zbhz520.xyz/login/login/mnlistRandom.html',    //随机获取12
+      //全部列表  url: 'http://103.107.188.201:81/login/login/mnlist.html',
+        url: 'http://103.107.188.201:81/login/login/mnlistRandom.html',    //随机获取12
         method: 'get'
     },function(ret, err){
         if (ret) {

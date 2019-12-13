@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<widget id="A6021750369662" version="0.0.1">
+<widget id="A6021527813193" version="0.0.1">
   <name>OldCar</name>
   <description>Example For APICloud.</description>
-  <author email="developer@apicloud.com" href="http://www.apicloud.com">Developer</author>
+  <author email="hzue_cjb@163.com" href="http://www.apicloud.com">Developer</author>
   <content src="index.html"/>
   <preference name="appCertificateVerify" value="false"/>
   <preference name="customRefreshHeader" value="UIPullRefreshMotive"/>
@@ -30,6 +30,8 @@
   <permission name="internet"/>
   <permission name="bootCompleted"/>
   <permission name="hardware"/>
+  <meta-data name="Mob-AppKey" value="2d74ae13c5f34"/>
+  <meta-data name="Mob-AppSecret" value="0abe3bdd1e2d40276edb658733d023f8"/>
   <access origin="*"/>
    <feature name="QQPlus">
     <param name="urlScheme" value="OP6cjKrpBgzk95RP"/>

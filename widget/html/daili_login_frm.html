@@ -238,7 +238,7 @@ api.toast({
         //请求数据库并存储用户信息
         var api_url = localStorage.getItem('api_url');
         api.ajax({
-            url: 'http://www.zbhz520.xyz/login/login/veify',
+            url: 'http://103.107.188.201:81/login/login/veify',
             method: 'POST',
             data: {
                 values: {
@@ -286,14 +286,14 @@ api.toast({
 
               /*    api.openWin({
                     name: 'h5',
-                    url: 'http://www.zbhz520.xyz/index/index/index',
+                    url: 'http://103.107.188.201:81/index/index/index',
                    });
 */
                    api.openWin({
                        name: 'video_win',
                        url: './video_win.html',
                        delay: 800,
-                       pageParam:{url:'http://www.zbhz520.xyz/index/index/index'},
+                       pageParam:{url:'http://103.107.188.201:81/index/index/index'},
                        bgColor: 'rgba(0,0,0,0)'
                    });
 
@@ -304,7 +304,7 @@ api.toast({
             /*   alert('网络错误！');
                   原弹窗提示*/
                   api.toast({
-                      msg: '(红楼梦TV提醒您！  网络错误 请检查！)',
+                      msg: '(OldCar提醒您！  网络错误 请检查！)',
                       duration: 5000
                   });
 

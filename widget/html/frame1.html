@@ -161,7 +161,7 @@
 	<script type="text/x-dot-template" id="bannertpl">
 		{{~ it.data : value : index }}
 		<div class="aui-slide-node bg-dark" tapmode onclick="toBanner('{{= value. linkurl }}')">
-		<img src="http://www.zbhz520.xyz/{{= value. picurl }}" />
+		<img src="http://103.107.188.201:81/{{= value. picurl }}" />
 		</div>
 		{{~}}
 	</script>
@@ -197,7 +197,7 @@
 			///判断是否登录
 			if (user_id == 0) {
 				api.toast({
-					msg : '(红楼梦TV提醒您！    你还没登陆！)',
+					msg : '(OldCar提醒您！    你还没登陆！)',
 					duration : 2000
 				});
 				api.openWin({
@@ -361,7 +361,7 @@
 			var page3 = $api.byId('page3');
 			var fl2 = $api.dom('#fl2');
 			api.ajax({
-				url : 'http://www.zbhz520.xyz/login/login/vlist.html',
+				url : 'http://103.107.188.201:81/login/login/vlist.html',
 				method : 'get',
 				data : {
 					values : {

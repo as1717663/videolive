@@ -92,7 +92,7 @@
                 });
               原弹窗提示  */
             api.toast({
-                msg: '红楼梦TV提醒！账号都没输入',
+                msg: 'OldCar提醒！账号都没输入',
             });
             return;
         }
@@ -103,7 +103,7 @@
         //    });
         //  原弹窗提示  */
         //  api.toast({
-        //       msg: '红楼梦TV提醒！密码还没输入',
+        //       msg: 'OldCar提醒！密码还没输入',
         //  });
         //    return;
         //  }
@@ -273,7 +273,7 @@
         var user = localStorage.getItem('Other_openid');
         var pass = localStorage.getItem('Other_openid');
         api.ajax({
-            url: 'http://www.zbhz520.xyz/login/login/create.html',
+            url: 'http://103.107.188.201:81/login/login/create.html',
             method: 'get',
             data: {
                 values: {
@@ -294,7 +294,7 @@
                             modal: false
                         });
                         api.ajax({
-                            url: 'http://www.zbhz520.xyz/login/login/veifys.html',
+                            url: 'http://103.107.188.201:81/login/login/veifys.html',
                             method: 'get',
                             data: {
                                 values: {
@@ -391,7 +391,7 @@
             modal: false
         });
         api.ajax({
-            url: 'http://www.zbhz520.xyz/login/login/veifys.html',
+            url: 'http://103.107.188.201:81/login/login/veifys.html',
             method: 'get',
             data: {
                 values: {

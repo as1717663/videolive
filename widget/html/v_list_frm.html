@@ -168,7 +168,7 @@ GetVlist();    //获取电影列表
 
       */
       api.toast({
-msg: '(红楼梦TV提醒您！    你还没登陆！)',
+msg: '(OldCar提醒您！    你还没登陆！)',
 duration: 2000
 });
 
@@ -393,7 +393,7 @@ function GetVlist() {
     var div_list = $api.byId('div_list');
     var template = $api.byId('template');
     api.ajax({
-        url: 'http://www.zbhz520.xyz/login/login/vlist.html',
+        url: 'http://103.107.188.201:81/login/login/vlist.html',
         method: 'get'
     },function(ret, err){
         if (ret) {
