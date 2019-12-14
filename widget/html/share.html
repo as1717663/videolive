@@ -204,7 +204,9 @@
 	//////////二维码//////////
 	function erweima() {
 		var wgtRootDir = api.wgtRootDir;
-
+		api.toast({
+			msg: 'testtesttest'
+		});
 		var screenClip = api.require('screenClip');
 		screenClip.screenShot({
 			rect:{
@@ -476,9 +478,7 @@
 
 	function UnloadedCompleted() {
 
-		api.toast({
-			msg: '加载失败 请检查网络是否顺畅'
-		});
+
 	}
 
 	////////////未加载完成时点击按钮提示 方法   UnloadedCompleted   E   ////////////
