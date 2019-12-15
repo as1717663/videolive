@@ -82,6 +82,8 @@
     var user = '';
     var pass = '';
     var moduleSMSSDK = null;
+    var isSendCode = false;
+    var theSentTime = 60;
     apiready = function () {
         api.parseTapmode();
         var header = $api.byId('aui-header');
@@ -380,6 +382,11 @@
         // param中的key命名不能改变
         var param = {zone: country, phoneNumber: phone};
         //alert(moduleSMSSDK);
+        if(isSendCode == true)
+        {
+          console.log(theSentTime);
+            return;
+        }
         moduleSMSSDK.getTextCode(param, function (ret, err) {
             if (err !== null && err !== undefined && err !== '') {
                 // 错误消息示例：{"msg":"Template not exist.","code":484}
@@ -389,8 +396,26 @@
                 // 正常消息示例：{"smart":false}
                 //alert(sTitle + JSON.stringify(ret));
                 api.toast({msg:'发送成功'})
+                sentTime();
             }
         });
+    }
+
+    function sentTime(){
+        theSentTime = 60;
+        isSendCode = true;
+        $api.byId('btn1').innerHTML = theSentTime+'s';
+
+        intervalId = setInterval(function () {
+            //console.log(4);
+            theSentTime--;
+            $api.byId('btn1').innerHTML = theSentTime+'s';
+            if(theSentTime == 0) {
+                clearInterval(intervalId);
+                isSendCode = false
+                $api.byId('btn1').innerHTML = '获取';
+            }
+        }, 1000);
     }
 </script>
 </html>

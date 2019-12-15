@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/auislide.css" />
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 	<!-- <link rel="stylesheet" type="text/css" href="../css/freame1.css" /> -->
+
 	<style>
 		.empty {
 			text-align: center;
@@ -279,7 +280,7 @@
 
 	function quan(){
 		api.ajax({
-			url: 'http://suo.im/api.php?format=json&url=' + copy,
+			url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
 			method: 'get'
 		}, function(ret, err) {
 
@@ -312,14 +313,16 @@
 
 	//////////复制红楼梦TV链接 //////////
 	function copySet() {
+
+		api.toast({msg:copy})
+		console.log(copy)
 		api.ajax({
-			url: 'http://suo.im/api.php?format=json&url=' + copy,
+			url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
 			method: 'get'
 		}, function(ret, err) {
-
+			console.log(JSON.stringify(ret));
 
 			if (ret) {
-
 				var url = $api.byId('url');
 				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
 				var wx = api.require('wx');
