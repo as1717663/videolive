@@ -64,9 +64,9 @@
             <input id="password" type="password" placeholder="设置密码" class="myui-from-list-item-input">
         </li>
 
-        <!--<li class="myui-from-list-item">
-   <input id="share" type="tel" minlength="6" maxlength="6" placeholder="邀请码(选填)" class="myui-from-list-item-input">
-  </li>-->
+        <li class="myui-from-list-item">
+           <input id="share" type="tel" minlength="6" maxlength="6" placeholder="邀请码" class="myui-from-list-item-input">
+        </li>
         <li class="myui-from-list-item">
             <button id="btn2" type="button" name="button" class="myui-from-list-item-button" onclick="toReg()">确认注册
             </button>
@@ -123,13 +123,12 @@
             return;
         }
 
-        // if(share == ''){
-        //   api.alert({
-        //       title: '调皮~',
-        //       msg: '密码不一致',
-        //   });
-        //   return;
-        // }
+        if(share == ''){
+            api.toast({
+                msg: 'ε=(´ο｀*))) 我去~   邀请码需要填写',
+            });
+          return;
+        }
         if (username.length < 6) {
             /*  api.alert({
                   title: '出错了',
@@ -163,7 +162,8 @@
                     data: {
                         values: {
                             name: username,
-                            password: password
+                            password: password,
+                            uid: share
                         }
                     }
                 }, function (ret, err) {
