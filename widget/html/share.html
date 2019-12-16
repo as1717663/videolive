@@ -208,17 +208,17 @@
 		// api.toast({
 		// 	msg: 'testtesttest'
 		// });
-		console.log('11111')
+		//console.log('11111')
 		var screenClip = api.require('screenClip');
-		console.log(screenClip);
+		console.log(screenClip.screenShot);
 		screenClip.screenShot({
 			rect:{
 			    x:api.winWidth*0.05,             //（可选项）数字类型；截图区域左上角点坐标；默认：10
-			    y:90,           //（可选项）数字类型；截图区域左上角点坐标；默认：128
+			    y:80,           //（可选项）数字类型；截图区域左上角点坐标；默认：128
 			    w:api.winWidth*0.9,         //（可选项）数字类型；截图区域的宽；默认：当前屏幕宽减二十
-			    h:api.winHeight*0.9,             //（可选项）数字类型；截图区域的高；默认：w
+			    h:api.winHeight*0.8,             //（可选项）数字类型；截图区域的高；默认：w
 			},
-			album:false,            //（可选项）布尔类型；是否保存到系统相册；默认：false
+			album:true,            //（可选项）布尔类型；是否保存到系统相册；默认：false
 	    imgPath:'fs://WeiXin',          //（可选项）字符串类型；保存的文件路径，不传则不保存，若路径不存在文件夹则创建此目录
 	    imgName: 'share'        //（可选项）字符串类型；保存的图片名字，不传则不保存，支持png和jpg格式，若不指定格式，则默认png
 		},function(ret, err) {
@@ -432,7 +432,7 @@
 				var url2 = $api.byId('ewm_img_3');
 				url2.innerHTML = '<img src="http://api.k780.com:88/?app=qr.get&data='+ret.msg+'"/>'
 				//console.log(copy);
-				$('#ewm_img').html('666');
+				//$('#ewm_img').html('666');
 				//var share = $api.byId('share');
 				//share.innerHTML = ret.share;
 				api.hideProgress();
