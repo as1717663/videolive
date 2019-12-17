@@ -118,14 +118,14 @@
         });
         return;
       }
-      if (yzcode != code_data) {
-        api.alert({
-            title: '糟糕~',
-            msg: '短信验证码不正确',
-        });
-        return;
-
-      }
+      // if (yzcode != code_data) {
+      //   api.alert({
+      //       title: '糟糕~',
+      //       msg: '短信验证码不正确',
+      //   });
+      //   return;
+      //
+      // }
         var param = {zone: '86', phoneNumber: username, code: yzcode};
         moduleSMSSDK = api.require('smssdk');
         moduleSMSSDK.commitCode(param, function (ret, err) {
