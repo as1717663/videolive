@@ -129,14 +129,14 @@
 			</div>
 			<div id="fl2" style="-webkit-box-pack: center;
 			-webkit-box-align: center;background-color:#f5f5f5;padding-top: 20px;padding-bottom: 20px;display:-webkit-box">
-				<div id="page1" class="aui-btn aui-btn-info aui-btn-block" tapmode onclick="GetVlist(page-1)" style="background-color: #333;width:65px;height:30px;line-height:30px;margin-right:5px;">
+				<div id="page1" class="aui-btn aui-btn-info aui-btn-block" tapmode onclick="GetVlist(-1)" style="background-color: #333;width:65px;height:30px;line-height:30px;margin-right:5px;">
 					上一页
 				</div>
 				<form method="post" action="javascript:GetVlist($api.val($api.byId('page0')))">
 					<input type="text" placeholder="1" id="page0" style="color:#000;text-align:center;background-color:#fff; width: 25px; height:30px; border-radius:5px;border:1px solid #333;">
 					<span style="margin:5px;padding-top:10px;font-size: 1rem;" id="page2">共1页</span>
 				</form>
-				<div id="page3" class="aui-btn aui-btn-info aui-btn-block" tapmode onclick="GetVlist(page+1)" style="background-color: #eee;width:65px;height:30px;line-height:30px;margin-right:5px;">
+				<div id="page3" class="aui-btn aui-btn-info aui-btn-block" tapmode onclick="GetVlist(1)" style="background-color: #eee;width:65px;height:30px;line-height:30px;margin-right:5px;">
 					下一页
 				</div>
 			</div>
@@ -343,11 +343,18 @@
 		}
 
 		//////////////////////   获取电影推荐列表  方法   GetVlist    S //////////////////////
-		function GetVlist(page, id) {
+		function GetVlist(pageTemp, id) {
 			id=id?id:id_type;
+			var page = parseInt($api.val($api.byId('page0')))+pageTemp;
 			if (page >= totalpage) {
 				page = totalpage;
 			}
+			if(page <= 1)
+			{
+				page = 1;
+			}
+			console.log(page)
+			console.log(totalpage)
 			api.showProgress({
 				title : '加载中...',
 				modal : false
@@ -370,6 +377,7 @@
 					}
 				}
 			}, function(ret, err) {
+				console.log(JSON.stringify(ret));
 				if (ret.msg['data']['0']) {
 					$api.attr(fl2, 'style', '-webkit-box-pack: center;-webkit-box-align: center;background-color:#f5f5f5;padding-top: 20px;padding-bottom: 20px;display:-webkit-box');
 					//alert( JSON.stringify( ret ) );
