@@ -178,7 +178,7 @@
           </div>
           <div  class="vip_gou_8" >购买激活码</div>
       </div>
-      
+
       <div class="vip_gou_1"  onclick="openUrl2()">
           <div  class="vip_gou_2"><span class="vip_gou_3">季度卡</span>  </div>
           <div class="vip_gou_4"><h2  class="vip_gou_5">使用90天</h2>
@@ -194,7 +194,7 @@
           </div>
           <div  class="vip_gou_8" >购买激活码</div>
       </div>
- 
+
       <div class="vip_gou_1"  onclick="openUrl3()">
           <div  class="vip_gou_2"><span class="vip_gou_3">年卡</span>  </div>
           <div class="vip_gou_4"><h2  class="vip_gou_5">使用365天</h2>
@@ -202,7 +202,7 @@
           </div>
           <div  class="vip_gou_8" >购买激活码</div>
       </div>
-      
+
       <div class="vip_gou_1"  onclick="openUrl4()">
           <div  class="vip_gou_2"><span class="vip_gou_3">永久</span>  </div>
           <div class="vip_gou_4"><h2  class="vip_gou_5">终生观看VIP视频</h2>
@@ -210,7 +210,7 @@
           </div>
           <div  class="vip_gou_8" >购买激活码</div>
       </div>
-      
+
        <br><div class="dl">
         也可以在下方在线升级为合伙人   ☟☟ <br>
       </div>
@@ -397,6 +397,7 @@ function dllll(){
 
       //访问地址
       function toBanner(url){
+        url += '&u_id='+localStorage.getItem('user_id');
         var sys = api.systemType;
         if (sys == 'ios') {
           if (url == '') {
