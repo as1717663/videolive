@@ -16,6 +16,7 @@
   /*      #footer{  border-radius: 30px 30px 0px 0px;box-shadow: 0.01rem 0.15rem 1rem 1px rgba(0, 0, 0, 0.1);}  */
         #footer ul li{  height: 2.25rem; padding-top: 1.25rem; padding-bottom: 1px; background: url() no-repeat center 2px; font-size: 0.6rem;background-size: auto 1.1rem; text-align: center; }
         #footer ul li.active{ color: #f52737; }
+
         #footer ul li:nth-child(1){ background-image: url(./image/shouye.png); }
         #footer ul li:nth-child(2){ background-image: url(./image/zhibo.png); }
         #footer ul li:nth-child(3){ background-image: url(./image/fx.png); }
@@ -79,11 +80,13 @@
     </header>
   -->
 
+    <!--<div style="width: 100%;height: 100%;background: rgba(0,0,0,0.1)">-->
+        <!--请先购买会员-->
+    <!--</div>-->
 
     <div id="main" class="flex-con" >
 
     </div>
-
 
     <div id="footer" class="border-t" >
         <ul class="flex-wrap" style="font-weight:bold">
@@ -532,14 +535,43 @@
         $api.addCls( eHeaderLis[index], 'active');
         if(index == 1)
         {
-            // frames[1].url = 'http://103.107.188.201:83';
+            var time = localStorage.getItem('user_time');
+            var timestamp = Date.parse(new Date())/1000;
+            if (time < timestamp) {
+                api.openFrame({
+                    name: 'buyVipDialog',
+                    url: './html/h6.html',
+                    rect: {
+                        x:0,
+                        y:0,
+                        w:api.winWidth,
+                        h:'auto',
+                        marginBottom:'45'
+                    },
+                    scrollToTop:false,
+                    scaleEnabled:false,
+                    scrollEnabled:false,
+                    bgColor: 'rgba(0,0,0,0.6)',
+                    bounces: false
+                });
+            }
+            else
+            {
+                api.closeFrame({
+                    name: 'buyVipDialog'
+                });
+            }
             api.setFrameGroupIndex({
                 name: 'group',
-                index: index,
-                reload: true
+                index: index
             });
+
+           // var dialogBox = api.require('dialogBox');
         }
         else {
+            api.closeFrame({
+                name: 'buyVipDialog'
+            });
             api.setFrameGroupIndex({
                 name: 'group',
                 index: index
@@ -680,11 +712,13 @@ function ConnectionDetectionWithServer() {
         for (var i = 0,len = eHeaderLis.length; i < len; i++) {
             if(i==1)
             {
+
                frames.push({
                 name: 'frame'+i,
-                url: 'http://103.107.188.201:83/index.php',
+                url: 'http://103.107.188.201:83',
                 bgColor : '#f5f5f5',
-                bounces:true
+                bounces:true,
+                   bgColor: 'rgba(248,248,255,0.0)',
                })
             }
             else
