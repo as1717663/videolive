@@ -41,29 +41,29 @@
 </body>
 <script type="text/javascript" src="../script/api.js" ></script>
 <script type="text/javascript">
-    apiready = function(){
+    apiready = function() {
 
-      api.parseTapmode();
-      var header = $api.byId('aui-header');
-      $api.fixStatusBar(header);
-      var headerPos = $api.offset(header);
-      var body_h = $api.offset($api.dom('body')).h;
+        // api.parseTapmode();
+        // var header = $api.byId('aui-header');
+        // $api.fixStatusBar(header);
+        // var headerPos = $api.offset(header);
+        // var body_h = $api.offset($api.dom('body')).h;
 
-
-    function closeWin(){
-      var browser = api.require('webBrowser');
-      browser.historyBack(
-        function(ret, err) {
-            if (!ret.status) {
-                api.closeWin();
-            }
-        }
-      );
     }
-
-    function closeWd(){
-      api.closeWin();
-    }
+    // function closeWin(){
+    //   var browser = api.require('webBrowser');
+    //   browser.historyBack(
+    //     function(ret, err) {
+    //         if (!ret.status) {
+    //             api.closeWin();
+    //         }
+    //     }
+    //   );
+    // }
+    //
+    // function closeWd(){
+    //   api.closeWin();
+    // }
 
 
 
