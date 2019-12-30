@@ -4,52 +4,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <script type="text/javascript" src="../script/api.js"></script>
     <title>title</title>
-    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <style>
-        body,html{
-            background: inherit;
-            text-align: center;
-        }
-        .wrapper {
-            text-transform: uppercase;
-            background: #ececec;
-            color: #555;
-            cursor: help;
-            font-family: "Gill Sans", Impact, sans-serif;
-            font-size: 20px;
-            margin: 200px 75px 10px 75px;
-            padding: 15px 20px;
-            position: relative;
-            text-align: center;
-            width: 200px;
-            -webkit-transform: translateZ(0); /* webkit flicker fix */
-            -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
-        }
+              *{
+                  margin: 0;
+                  padding: 0;
+              }
+              div{
+                   width:100%;
+                  height: 100%;
+                  opacity: 0;
+                   position: absolute;
+               }
 
     </style>
 </head>
-<body style="display: flex">
-<div style="flex: 1;">             <!--<![endif]-->
-    <div class="wrapper">
-        请先购买会员.....
+<body>     <!--<![endif]-->
+    <div class="wrapper" onclick="oldcarmsn()">
         <!--<div class="tooltip">I am a tooltip!</div>-->
     </div>
-</div>
 
 </body>
 <script type="text/javascript" src="../script/api.js" ></script>
 <script type="text/javascript">
-    apiready = function() {
-
+    apiready = function() {}
+      function oldcarmsn() {
+        api.toast({
+            msg: 'OldCar提醒！你还没登陆！',
+            duration: 5000
+        });
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            delay: 2000
+        });
+        return;
+}
         // api.parseTapmode();
         // var header = $api.byId('aui-header');
         // $api.fixStatusBar(header);
         // var headerPos = $api.offset(header);
         // var body_h = $api.offset($api.dom('body')).h;
-
-    }
     // function closeWin(){
     //   var browser = api.require('webBrowser');
     //   browser.historyBack(
