@@ -533,11 +533,13 @@
         }
         $api.addCls( eFootLis[index], 'active');
         $api.addCls( eHeaderLis[index], 'active');
+        var browser = api.require('webBrowser');
         if(index == 1)
         {
             var time = localStorage.getItem('user_time');
             var timestamp = Date.parse(new Date())/1000;
             if (time < timestamp) {
+                browser.closeView();
                 api.openFrame({
                     name: 'buyVipDialog',
                     url: './html/h6.html',
@@ -554,11 +556,23 @@
                     bgColor: 'rgba(0,0,0,0.6)',
                     bounces: false
                 });
+
             }
             else
             {
                 api.closeFrame({
                     name: 'buyVipDialog'
+                });
+                browser.openView({
+                    url: 'http://103.107.188.201:83',
+                    rect: {
+                        marginTop:90,
+                        marginLeft:0,
+                        marginRight:0,
+                        marginBottom:45
+                    }
+                }, function(ret, err) {
+                    console.log(ret)
                 });
             }
             api.setFrameGroupIndex({
@@ -572,6 +586,7 @@
             api.closeFrame({
                 name: 'buyVipDialog'
             });
+            browser.closeView();
             api.setFrameGroupIndex({
                 name: 'group',
                 index: index
