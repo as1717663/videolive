@@ -707,46 +707,55 @@ function ConnectionDetectionWithServer() {
 
 //////////////////////   获取FRAME页面 方法    GetfunIniGroup     S //////////////////////
     function GetfunIniGroup(){
+        var browser = api.require('webBrowser');
         var eHeaderLis = $api.domAll('header li'),
             frames = [];
         for (var i = 0,len = eHeaderLis.length; i < len; i++) {
             if(i==1)
-            {
-
-               frames.push({
-                name: 'frame'+i,
-                url: 'http://103.107.188.201:83',
-                bgColor : '#f5f5f5',
-                bounces:true,
-                   bgColor: 'rgba(248,248,255,0.0)',
-               })
+            {  browser.openView({
+    url: 'http://103.107.188.201:83',
+    rect: {
+      marginLeft:0,    //相对父页面左外边距的距离，默认0
+      marginTop:$api.offset( $api.dom('header')).h,     //相对父页面上外边距的距离，默认0
+      marginBottom:$api.offset( $api.dom('#footer')).h,  //相对父页面下外边距的距离，默认0
+      marginRight:0,    //相对父页面右外边距的距离，默认0
+    }
+}, function(ret, err) {
+});
             }
             else
             {
-                frames.push({
-                name: 'frame'+i,
-                url: './html/frame'+i+'.html',
-                bgColor : '#f5f5f5',
-                bounces:true
-               })
+
+              browser.openView({
+      url: 'html/frame'+i+'.html',
+      rect: {
+
+      marginLeft:0,    //相对父页面左外边距的距离，默认0
+      marginTop:$api.offset( $api.dom('header')).h,     //相对父页面上外边距的距离，默认0
+      marginBottom:$api.offset( $api.dom('#footer')).h,  //相对父页面下外边距的距离，默认0
+      marginRight:0,    //相对父页面右外边距的距离，默认0
+      }
+  }, function(ret, err) {
+  });
             }
 
 
         }
-        api.openFrameGroup({
+      /*  api.openFrameGroup({
             name: 'group',
             scrollEnabled: false,
             rect: {
-                x: 0,
-                y: $api.dom('header').offsetHeight,
-                w: api.winWidth,
-                h: $api.dom('#main').offsetHeight
+
+                marginLeft:0,    //相对父页面左外边距的距离，数字类型
+                marginTop:$api.offset( $api.dom('header')).h, //相对父页面上外边距的距离，数字类型
+                marginBottom:$api.offset( $api.dom('#footer')).h,   //$api.offset( $api.dom('#main')).h,   //相对父页面下外边距的距离，数字类型
+                marginRight:0,    //相对父页面右外边距的距离，数字类型
             },
             index: 0,
             frames: frames
         }, function (ret, err) {
 
-        });
+        })*/
     }
 
 //////////////////////   获取FRAME页面 方法    GetfunIniGroup     E //////////////////////
