@@ -192,15 +192,34 @@
 	var api_url = localStorage.getItem('api_url');
   var copy = '';
   var shama = '';
+	var pageParam = {};
 	apiready = function() {
 
-				getNav();
+		getNav();
 
 		//获取信息
 		api.parseTapmode();
+		//console.log(1111);
+		pageParam = api.pageParam;
+		//alert(pageParam.type);
 
 
 	}
+
+	function getUrl()
+	{
+		var url = "http://api.wx.urlfh.com/dwz.php?type=vx&longurl=";
+		if(pageParam && pageParam.type)
+		{
+			if(pageParam.type == 'qq')
+			{
+				url = "http://api.wx.urlfh.com/dwz.php?type=qq&longurl=";
+			}
+		}
+		console.log(url);
+		return url;
+	}
+
 	//////////二维码//////////
 	function erweima() {
 		var wgtRootDir = api.wgtRootDir;
@@ -282,16 +301,18 @@
 	//////////二维码 //////////
 
 	function quan(){
+		var url = getUrl()+copy;
+		console.log(url);
 		api.ajax({
-			url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
+			url: url, //url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
 			method: 'get'
 		}, function(ret, err) {
 
 			console.log(JSON.stringify(ret));
-			if (ret) {
+			if (ret && ret.ae_url) {
 
 				var url = $api.byId('url');
-				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
+				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.ae_url;
 				var wx = api.require('wx');
 				wx.shareText({
 				    apiKey: '',
@@ -318,16 +339,17 @@
 	function copySet() {
 
 		//api.toast({msg:copy})
-		console.log(copy)
+		var url = getUrl()+copy;
+		console.log(url);
 		api.ajax({
-			url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
+			url: url, //url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
 			method: 'get'
 		}, function(ret, err) {
 			console.log(JSON.stringify(ret));
 
-			if (ret) {
+			if (ret && ret.ae_url) {
 				var url = $api.byId('url');
-				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
+				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.ae_url;
 				var wx = api.require('wx');
 				wx.shareText({
 				    apiKey: '',
@@ -348,7 +370,7 @@
 				});
 				var clipBoard = api.require('clipBoard');
 				clipBoard.set({
-					value: '【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url
+					value: '【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.ae_url
 				}, function(ret, err) {
 					if (ret) {
 						api.toast({
@@ -366,7 +388,7 @@
 
 			} else {
 
-				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
+				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + copy;
 				var sharedModule = api.require('shareAction');
 				sharedModule.share({
 						text: share_txt,

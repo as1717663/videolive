@@ -21,7 +21,7 @@
 	<body style="background-color: #f5f5f5;">
 	<div style="background-color: #f5f5f5;position:absolute;z-index: -2;">
 		<div style="background-color: #333;top:0;width:100%;height: 2.5rem;position:absolute;z-index: -1;"></div>
-		
+
 		<div class="Personal_info bor clearfix" style="margin-top: 0.5rem;border-radius: 2px;">
 			<table border="0" width="100%">
 				<tr>
@@ -50,7 +50,7 @@
 				</p> </a>
 			</div>
 		</div>
-		
+
 		<div class="Personal_vip clearfix" onclick="toLogin1()">
 			<br/><h3 id="time_ico">0000-00-00</h3>
 		</div>
@@ -92,7 +92,7 @@
 				</tr>
 			</table>
 		<div class="Personal_list">
-			<a onClick="openWin('share_win')"> <img src="../user/16.png" alt=""> <h3>分享海报</h3> </a>
+			<a onClick="shareSelect()"> <img src="../user/16.png" alt=""> <h3>分享海报</h3> </a>
 			<a onClick="kefuWeixin()" style="border-bottom: 0px solid #eee;"> <img src="../user/14.png" alt=""> <h3>专属客服</h3> </a>
 			<!--<a onClick="openWin('back_pwd')"> <img src="../user/14.png" alt=""> <h3>修改密码</h3> </a>
 			<a onClick="openWin('guankan_help_win')">
@@ -105,7 +105,7 @@
 			<p id="weichat"></p>
 			</a>-->
 		</div>
-		
+
 		<div class="Personal_list">
 			<a onClick="cleaCache()"> <img src="../user/19.png" alt=""> <h3>清理缓存</h3> <p id="cache"></p> </a>
 			<a onClick="checkUpdate()"> <img src="../user/20.png" alt=""> <h3>在线更新</h3> <p id="vsion"></p> </a>
@@ -479,9 +479,80 @@ modal: false
 //			api.openWin({});
     }
 
+    function shareSelect(){
+		var dialogBox = api.require('dialogBox');
+		dialogBox.scene({
+			rect: {
+				w: 280,
+				h: 250
+			},
+			texts: {
+				title: '分享到微信/qq？',
+				content: '友情提示：请准确选择分享渠道生成链接不同噢！'
+			},
+			styles: {
+				bg: '#fff',
+				corner: 2,
+				title: {
+					bg: '#5a9dcf',
+					h: 50,
+					size: 14,
+					color: '#fff'
+				},
+				content: {
+					color: '#5a9dcf',
+					size: 14
+				},
+				cell: {
+					bg: '#fff',
+					h: 48,
+					text: {
+						color: '#636363',
+						size: 13,
+						align: 'center'
+					},
+					icon: {
+						marginL: 15,
+						marginT: 9,
+						w: 30,
+						h: 30,
+						corner: 2
+					}
+				}
+			},
+			optionDatas: [{
+				icon: 'widget://image/login/wx.png',
+				text: '分享到微信'
+			}, {
+				icon: 'widget://image/login/QQ.png',
+				text: '分享到QQ'
+			}, {
+				text: '取消'
+			}]
+		}, function(ret, err) {
+			if (ret) {
+				//alert(JSON.stringify(ret));
+				if(ret.index == 0)
+				{
+					openWin('share_win', {type:'wx'})
+				}
+				else if(ret.index == 1)
+				{
+					openWin('share_win', {type:'qq'})
+				}
+		    } else {
+				//alert(JSON.stringify(err));
+			}
+			dialogBox.close({
+				dialogName: 'scene'
+			});
+		});
+	}
+
+
 ////////////退出登录 方法  exitLogin   E   ////////////
 ////////////打开页面 方法  openWin   S   ////////////
-    function openWin(name) {
+    function openWin(name, param) {
 //如果判断没有登录 就提示  并跳转到登录页面
         if (localStorage.getItem('user_id') < 1) {
             api.toast({
@@ -497,6 +568,12 @@ modal: false
         }
 //↑↑↑↑↑↑↑上面LEEi   新加
 //网络连接判断S
+		var paramData = {}
+        if(param)
+		{
+			paramData = param;
+		}
+
         api.ajax({
             url: api_url + '/login/login/banben.html',
             method: 'get'
@@ -512,7 +589,8 @@ modal: false
                     bounces: false,
                     delay: delay,
                     slidBackEnabled: true,
-                    vScrollBarEnabled: false
+                    vScrollBarEnabled: false,
+					pageParam:paramData
                 });
             } else {
 //网络连接失败 进行提示
@@ -2150,7 +2228,7 @@ url: 'http://103.107.188.201:81/index/index/index',
             duration: 3000
         });
     }
-    
+
     function jf(){
     	openWin('jifen_win');
     }

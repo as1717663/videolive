@@ -41,6 +41,12 @@
     $api.fixStatusBar(header);
     var headerPos = $api.offset(header);
     var body_h = $api.offset($api.dom('body')).h;
+    var pageParam = api.pageParam;
+    var param = {}
+    if(pageParam)
+    {
+        param = pageParam;
+    }
     api.openFrame({
         name: 'share_fm',
         url: 'share.html',
@@ -52,8 +58,7 @@
             w: 'auto',
             h: 'auto'
         },
-
-        pageParam:{}
+        pageParam:param
     })
 
 
