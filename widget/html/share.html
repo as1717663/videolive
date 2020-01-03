@@ -34,7 +34,7 @@
 
 		#fl_list .aui-grid-label {
 			text-align: center;
-			;
+		;
 		}
 
 		#fl_list .pt-list {
@@ -114,42 +114,42 @@
 </head>
 
 <body>
-	<div id="aui-slide" class="fx-box">
-		<div id="slidebox" class="aui-slide-wrap" style="margin-bottom:0px;border-radius:0.5rem;box-shadow:0.1rem 0.1rem 0.4rem rgba(99, 99, 99, 0.3);">
-			<div class="aui-slide-node bg-dark" tapmode onclick="" style="background:transparent;">
-				<img src="../image/share.png" onClick="UnloadedCompleted()">
-				<div class="ewm_img" id="ewm_img_1"></div>
-			</div>
-			<div class="aui-slide-node bg-dark" tapmode onclick="" style="background:transparent;">
-				<img src="../image/share1.png" onClick="UnloadedCompleted()">
-				<div class="ewm_img" id="ewm_img_2"></div>
-			</div>
-			<div class="aui-slide-node bg-dark" tapmode onclick="" style="background:transparent;">
-				<img src="../image/share2.png" onClick="UnloadedCompleted()">
-				<div class="ewm_img" id="ewm_img_3"></div>
-			</div>
-			<!--
-						顶部横幅未加载完成时的提示-->
-			<!--顶部横幅未加载完成时的提示-->
-
+<div id="aui-slide" class="fx-box">
+	<div id="slidebox" class="aui-slide-wrap" style="margin-bottom:0px;border-radius:0.5rem;box-shadow:0.1rem 0.1rem 0.4rem rgba(99, 99, 99, 0.3);">
+		<div class="aui-slide-node bg-dark" tapmode onclick="" style="background:transparent;">
+			<img src="../image/share.png" onClick="UnloadedCompleted()">
+			<div class="ewm_img" id="ewm_img_1"></div>
 		</div>
-		<div class="aui-slide-page-wrap">
-			<!--分页容器-->
+		<div class="aui-slide-node bg-dark" tapmode onclick="" style="background:transparent;">
+			<img src="../image/share1.png" onClick="UnloadedCompleted()">
+			<div class="ewm_img" id="ewm_img_2"></div>
 		</div>
-	</div>
-	<div class="reg-box">
+		<div class="aui-slide-node bg-dark" tapmode onclick="" style="background:transparent;">
+			<img src="../image/share2.png" onClick="UnloadedCompleted()">
+			<div class="ewm_img" id="ewm_img_3"></div>
+		</div>
 		<!--
-		<div class="reg-box-l" onclick="quan('reg_frm')">
-			朋友圈分享
-		</div>
-		-->
-		<div class="reg-box-l" onclick="erweima('reg_frm')">
-			分享邀请海报
-		</div>
-		<div class="reg-box-l" onclick="copySet('login')">
-			分享邀请链接
-		</div>
+                    顶部横幅未加载完成时的提示-->
+		<!--顶部横幅未加载完成时的提示-->
+
 	</div>
+	<div class="aui-slide-page-wrap">
+		<!--分页容器-->
+	</div>
+</div>
+<div class="reg-box">
+	<!--
+    <div class="reg-box-l" onclick="quan('reg_frm')">
+        朋友圈分享
+    </div>
+    -->
+	<div class="reg-box-l" onclick="erweima('reg_frm')">
+		分享邀请海报
+	</div>
+	<div class="reg-box-l" onclick="copySet('login')">
+		分享邀请链接
+	</div>
+</div>
 </body>
 
 <script type="text/x-dot-template" id="bannertpl">
@@ -190,36 +190,17 @@
 	});
 
 	var api_url = localStorage.getItem('api_url');
-  var copy = '';
-  var shama = '';
-	var pageParam = {};
+	var copy = '';
+	var shama = '';
 	apiready = function() {
 
 		getNav();
 
 		//获取信息
 		api.parseTapmode();
-		//console.log(1111);
-		pageParam = api.pageParam;
-		//alert(pageParam.type);
 
 
 	}
-
-	function getUrl()
-	{
-		var url = "http://api.wx.urlfh.com/dwz.php?type=vx&longurl=";
-		if(pageParam && pageParam.type)
-		{
-			if(pageParam.type == 'qq')
-			{
-				url = "http://api.wx.urlfh.com/dwz.php?type=qq&longurl=";
-			}
-		}
-		console.log(url);
-		return url;
-	}
-
 	//////////二维码//////////
 	function erweima() {
 		var wgtRootDir = api.wgtRootDir;
@@ -231,18 +212,18 @@
 		console.log(screenClip.screenShot);
 		screenClip.screenShot({
 			rect:{
-			    x:api.winWidth*0.05,             //（可选项）数字类型；截图区域左上角点坐标；默认：10
-			    y:88,           //（可选项）数字类型；截图区域左上角点坐标；默认：128
-			    w:api.winWidth*0.9,         //（可选项）数字类型；截图区域的宽；默认：当前屏幕宽减二十
-			    h:api.winHeight-44-88,             //（可选项）数字类型；截图区域的高；默认：w
+				x:api.winWidth*0.05,             //（可选项）数字类型；截图区域左上角点坐标；默认：10
+				y:88,           //（可选项）数字类型；截图区域左上角点坐标；默认：128
+				w:api.winWidth*0.9,         //（可选项）数字类型；截图区域的宽；默认：当前屏幕宽减二十
+				h:api.winHeight-44-88,             //（可选项）数字类型；截图区域的高；默认：w
 			},
 			album:true,            //（可选项）布尔类型；是否保存到系统相册；默认：false
-	    imgPath:'fs://WeiXin',          //（可选项）字符串类型；保存的文件路径，不传则不保存，若路径不存在文件夹则创建此目录
-	    imgName: 'share'        //（可选项）字符串类型；保存的图片名字，不传则不保存，支持png和jpg格式，若不指定格式，则默认png
+			imgPath:'fs://WeiXin',          //（可选项）字符串类型；保存的文件路径，不传则不保存，若路径不存在文件夹则创建此目录
+			imgName: 'share'        //（可选项）字符串类型；保存的图片名字，不传则不保存，支持png和jpg格式，若不指定格式，则默认png
 		},function(ret, err) {
-			   console.log(ret);
-				 console.log(err);
-		    if (ret.status) {
+			console.log(ret);
+			console.log(err);
+			if (ret.status) {
 
 				api.toast({
 					msg: '准备分享……',
@@ -252,7 +233,7 @@
 				setTimeout(function(){
 					var sharedModule = api.require('shareAction');
 					sharedModule.share({
-					  type: 'image',
+						type: 'image',
 						path: 'fs://WeiXin/share.png',
 					});
 
@@ -261,71 +242,69 @@
 
 				*/
 
-		    } else {
-		      alert('0'+JSON.stringify(err));
-		    }
+			} else {
+				alert('0'+JSON.stringify(err));
+			}
 		});
 
-/*
-		api.toast({
-			msg: '点击白框内截取并保存海报至相册',
-			duration: 5000
-		});
-		var screenClip = api.require('screenClip');
-		screenClip.open({
-			cutFrame:{
-			    x:api.winWidth*0.05,             //（可选项）数字类型；截图区域左上角点坐标；默认：10
-			    y:api.winWidth*0.05+70,           //（可选项）数字类型；截图区域左上角点坐标；默认：128
-			    w:api.winWidth*0.9,         //（可选项）数字类型；截图区域的宽；默认：当前屏幕宽减二十
-			    h:$api.dom('#slidebox').offsetHeight-(api.winWidth*0.05)+5,              //（可选项）数字类型；截图区域的高；默认：w
-			    borderColor: '#FFF', //（可选项）字符串类型；边框颜色，支持 rgb、rgba、#；默认：#696969
-			    borderWidth: 5, //（可选项）数字类型；边框粗细；默认：2
-			    tipsSize: 14,    //（可选项）数字类型；提示文字的大小；默认：12
-			    tipsPosition:'center', //（可选项）字符串类型；提示文字位置，取值范围见提示文字位置；默认：center
-			    tipsColor:'#FFF'    //（可选项）字符串类型；提示文字颜色，支持#、rgb、rgba；默认：#696969
-			},
-			save:{
-					album:false,            //（可选项）布尔类型；是否保存到系统相册；默认：false
-			    imgPath:'mojing',          //（可选项）字符串类型；保存的文件路径，不传则不保存，若路径不存在文件夹则创建此目录
-			    imgName: 'share'        //（可选项）字符串类型；保存的图片名字，不传则不保存，支持png和jpg格式，若不指定格式，则默认png
-			}
-		},function(ret, err) {
-		    if (ret.status) {
-		        console.log(JSON.stringify(ret));
-		    } else {
-		        console.log(JSON.stringify(err));
-		    }
-		});
-*/
+		/*
+                api.toast({
+                    msg: '点击白框内截取并保存海报至相册',
+                    duration: 5000
+                });
+                var screenClip = api.require('screenClip');
+                screenClip.open({
+                    cutFrame:{
+                        x:api.winWidth*0.05,             //（可选项）数字类型；截图区域左上角点坐标；默认：10
+                        y:api.winWidth*0.05+70,           //（可选项）数字类型；截图区域左上角点坐标；默认：128
+                        w:api.winWidth*0.9,         //（可选项）数字类型；截图区域的宽；默认：当前屏幕宽减二十
+                        h:$api.dom('#slidebox').offsetHeight-(api.winWidth*0.05)+5,              //（可选项）数字类型；截图区域的高；默认：w
+                        borderColor: '#FFF', //（可选项）字符串类型；边框颜色，支持 rgb、rgba、#；默认：#696969
+                        borderWidth: 5, //（可选项）数字类型；边框粗细；默认：2
+                        tipsSize: 14,    //（可选项）数字类型；提示文字的大小；默认：12
+                        tipsPosition:'center', //（可选项）字符串类型；提示文字位置，取值范围见提示文字位置；默认：center
+                        tipsColor:'#FFF'    //（可选项）字符串类型；提示文字颜色，支持#、rgb、rgba；默认：#696969
+                    },
+                    save:{
+                            album:false,            //（可选项）布尔类型；是否保存到系统相册；默认：false
+                        imgPath:'mojing',          //（可选项）字符串类型；保存的文件路径，不传则不保存，若路径不存在文件夹则创建此目录
+                        imgName: 'share'        //（可选项）字符串类型；保存的图片名字，不传则不保存，支持png和jpg格式，若不指定格式，则默认png
+                    }
+                },function(ret, err) {
+                    if (ret.status) {
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+        */
 	}
 	//////////二维码 //////////
 
 	function quan(){
-		var url = getUrl()+copy;
-		console.log(url);
 		api.ajax({
-			url: url, //url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
+			url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
 			method: 'get'
 		}, function(ret, err) {
 
 			console.log(JSON.stringify(ret));
-			if (ret && ret.ae_url) {
+			if (ret) {
 
 				var url = $api.byId('url');
-				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.ae_url;
+				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
 				var wx = api.require('wx');
 				wx.shareText({
-				    apiKey: '',
-				    scene: 'timeline',
-				    text: share_txt
+					apiKey: '',
+					scene: 'timeline',
+					text: share_txt
 				}, function(ret, err) {
-				    if (ret.status) {
-							api.toast({
-								msg: '分享成功'
-							});
-				    } else {
-				        alert(err.code);
-				    }
+					if (ret.status) {
+						api.toast({
+							msg: '分享成功'
+						});
+					} else {
+						alert(err.code);
+					}
 				});
 
 
@@ -339,38 +318,37 @@
 	function copySet() {
 
 		//api.toast({msg:copy})
-		var url = getUrl()+copy;
-		console.log(url);
+		console.log(copy)
 		api.ajax({
-			url: url, //url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
+			url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
 			method: 'get'
 		}, function(ret, err) {
 			console.log(JSON.stringify(ret));
 
-			if (ret && ret.ae_url) {
+			if (ret) {
 				var url = $api.byId('url');
-				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.ae_url;
+				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
 				var wx = api.require('wx');
 				wx.shareText({
-				    apiKey: '',
-				    scene: 'timeline',
-				    text: share_txt
+					apiKey: '',
+					scene: 'timeline',
+					text: share_txt
 				}, function(ret, err) {
-				    if (ret.status) {
-				        alert('分享成功');
-				    } else {
-				        //alert(err.code);
-				    }
+					if (ret.status) {
+						alert('分享成功');
+					} else {
+						//alert(err.code);
+					}
 				});
 
 				var sharedModule = api.require('shareAction');
 				sharedModule.share({
-						text: share_txt,
-						type: 'text'
+					text: share_txt,
+					type: 'text'
 				});
 				var clipBoard = api.require('clipBoard');
 				clipBoard.set({
-					value: '【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.ae_url
+					value: '【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url
 				}, function(ret, err) {
 					if (ret) {
 						api.toast({
@@ -388,11 +366,11 @@
 
 			} else {
 
-				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + copy;
+				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
 				var sharedModule = api.require('shareAction');
 				sharedModule.share({
-						text: share_txt,
-						type: 'text'
+					text: share_txt,
+					type: 'text'
 				});
 				var clipBoard = api.require('clipBoard');
 				clipBoard.set({
