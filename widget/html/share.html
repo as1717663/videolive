@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
 	<link rel="stylesheet" type="text/css" href="../css/auislide.css" />
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
-	<!-- <link rel="stylesheet" type="text/css" href="../css/freame1.css" /> -->
+	 <link rel="stylesheet" type="text/css" href="../css/nativeShare.css" />
 
 	<style>
 		.empty {
@@ -71,7 +71,7 @@
 		.reg-box-l {
 			margin-left: 2.5%;
 			font-size: 0.7rem;
-			width:45%;
+			width:30%;
 			height: 1.9rem;
 			line-height: 1.9rem;
 			background-color: #FF4E88;
@@ -133,22 +133,25 @@
 		<!--顶部横幅未加载完成时的提示-->
 
 	</div>
+	<!--<div id="nativeShare1"></div>-->
 	<div class="aui-slide-page-wrap">
 		<!--分页容器-->
 	</div>
+
 </div>
 <div class="reg-box">
-	<!--
-    <div class="reg-box-l" onclick="quan('reg_frm')">
-        朋友圈分享
-    </div>
-    -->
+
 	<div class="reg-box-l" onclick="erweima('reg_frm')">
 		分享邀请海报
 	</div>
 	<div class="reg-box-l" onclick="copySet('login')">
 		分享邀请链接
 	</div>
+
+		<div class="reg-box-l" onclick="quan('reg_qq')">
+				微信/QQ专用分享
+		</div>
+
 </div>
 </body>
 
@@ -166,6 +169,7 @@
 <script type="text/javascript" src="../script/auislide.js"></script>
 <script type="text/javascript" src="../script/auilazyload.js"></script>
 <script type="text/javascript" src="../script/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../js/nativeShare.js"></script>
 <script type="text/javascript">
 	var parentid = localStorage.getItem('parentid');
 	if (parentid == "null" || parentid == null || parentid == 'undefined') {
@@ -281,37 +285,57 @@
 	}
 	//////////二维码 //////////
 
-	function quan(){
-		api.ajax({
-			url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
-			method: 'get'
-		}, function(ret, err) {
+	function quan(flag){
+		if(flag == 'reg_qq')
+		{
+			console.log(1111111);
+			// var config = {
+			// 	url:'http://blog.wangjunfeng.com',// 分享的网页链接
+			// 	title:'王俊锋的个人博客',// 标题
+			// 	desc:'王俊锋的个人博客',// 描述
+			// 	img:'http://www.wangjunfeng.com/img/face.jpg',// 图片
+			// 	img_title:'王俊锋的个人博客',// 图片标题
+			// 	from:'王俊锋的博客' // 来源
+			// };
+			// var share_obj = new nativeShare('nativeShare1',config);
 
-			console.log(JSON.stringify(ret));
-			if (ret) {
+			var browser = api.require('webBrowser');
+			browser.open({
+				url: './shareWxQQ.html'
+			});
+		}
+		else {
+			api.ajax({
+				url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
+				method: 'get'
+			}, function (ret, err) {
 
-				var url = $api.byId('url');
-				var share_txt='【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
-				var wx = api.require('wx');
-				wx.shareText({
-					apiKey: '',
-					scene: 'timeline',
-					text: share_txt
-				}, function(ret, err) {
-					if (ret.status) {
-						api.toast({
-							msg: '分享成功'
-						});
-					} else {
-						alert(err.code);
-					}
-				});
+				console.log(JSON.stringify(ret));
+				if (ret) {
+
+					var url = $api.byId('url');
+					var share_txt = '【OldCar】全网VIP视频免费看，高清无广告，再也不用充值会员啦！APP下载地址：' + ret.url;
+					var wx = api.require('wx');
+					wx.shareText({
+						apiKey: '',
+						scene: 'timeline',
+						text: share_txt
+					}, function (ret, err) {
+						if (ret.status) {
+							api.toast({
+								msg: '分享成功'
+							});
+						} else {
+							alert(err.code);
+						}
+					});
 
 
-			}
+				}
 
 
-		});
+			});
+		}
 	}
 
 	//////////复制红楼梦TV链接 //////////
