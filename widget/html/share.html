@@ -298,17 +298,23 @@
 			// 	from:'王俊锋的博客' // 来源
 			// };
 			// var share_obj = new nativeShare('nativeShare1',config);
+			api.ajax({
+				url: 'http://suo.im/api.php?format=json&key=5df4f8b53a005a23e52ca19d@6389306df9d5d70a004804e984429317&url=' + copy,
+				method: 'get'
+			}, function (ret, err) {
 
-			api.appInstalled({
-				appBundle: 'com.tencent.mtt'
-			}, function (ret) {
-				if(ret && ret.installed)
-				{
-					location.href = 'mttbrowser://url=http://103.107.188.201:81/other/demo.html';
-				}
-				else
-				{
-					api.toast({msg:'未安装QQ浏览器'});
+				console.log(JSON.stringify(ret));
+				if (ret) {
+					api.appInstalled({
+						appBundle: 'com.tencent.mtt'
+					}, function (ret1) {
+
+						if (ret1 && ret1.installed) {
+							location.href = 'mttbrowser://url=http://103.107.188.201:81/other/demo.html?url='+ret.url;
+						} else {
+							api.toast({msg: '未安装QQ浏览器'});
+						}
+					});
 				}
 			});
 		}
