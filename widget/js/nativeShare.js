@@ -59,6 +59,7 @@ var nativeShare = function (elementNode, config) {
                 } else {
                 }
             }
+            return true;
         } else {
             if (isqqBrowser && !isWeixin) {
                 to_app = to_app == '' ? '' : this.ucAppList[to_app][2];
@@ -75,16 +76,24 @@ var nativeShare = function (elementNode, config) {
                 if (typeof(browser) != "undefined") {
                     if (typeof(browser.app) != "undefined" && isqqBrowser == bLevel.qq.higher) {
                         browser.app.share(ah)
+                        return 1;
+                    }
+                    else{
+                        return 2;
                     }
                 } else {
                     if (typeof(window.qb) != "undefined" && isqqBrowser == bLevel.qq.lower) {
                         window.qb.share(ah)
+                        return 3;
                     } else {
+                        return 4;
                     }
                 }
             } else {
+                return 5;
             }
         }
+        return false;
     };
 
     this.html = function() {
@@ -138,7 +147,7 @@ var nativeShare = function (elementNode, config) {
 
         version.qq = isqqBrowser ? this.getVersion(UA.split("MQQBrowser/")[1]) : 0;
         version.uc = isucBrowser ? this.getVersion(UA.split("UCBrowser/")[1]) : 0;
-        isWeixin = this.is_weixin();
+        isWeixin = false;//this.is_weixin();
         if ((isqqBrowser && version.qq < 5.4 && platform_os == "iPhone") || (isqqBrowser && version.qq < 5.3 && platform_os == "Android")) {
             isqqBrowser = bLevel.qq.forbid
         } else {
