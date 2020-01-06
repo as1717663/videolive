@@ -299,11 +299,23 @@
 			// };
 			// var share_obj = new nativeShare('nativeShare1',config);
 
-			var browser = api.require('webBrowser2018');
-			browser.openWin({
-				url: 'http://103.107.188.201:81/other/demo.html'
-			}, function(ret){
-				//alert(JSON.stringify(ret));
+			// var browser = api.require('webBrowser2018');
+			// browser.openWin({
+			// 	url: 'http://103.107.188.201:81/other/demo.html'
+			// }, function(ret){
+			// 	//alert(JSON.stringify(ret));
+			// });
+			api.appInstalled({
+				appBundle: 'com.tencent.mtt'
+			}, function (ret) {
+				if(ret && ret.installed)
+				{
+					location.href = 'mttbrowser://url=http://103.107.188.201:81/other/demo.html';
+				}
+				else
+				{
+					api.toast({msg:'未安装QQ浏览器'});
+				}
 			});
 		}
 		else {
